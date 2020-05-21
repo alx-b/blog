@@ -1,4 +1,19 @@
 body {
+    display: grid;
+    margin: auto;
+    width: 80vw;
+    max-width: 80vw;
     background-color: #333;
     color: #eee;
+}
+
+.nav-grid {
+    display: grid;
+    grid-template-columns: repeat(4, auto);
+}
+
+.nav-grid > a {
+    color: #eee;
+    background-color: #222;
+
 }

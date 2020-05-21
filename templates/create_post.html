@@ -1,0 +1,30 @@
+{% extends "base.html" %}
+
+{% block head %}
+    <link
+        rel="stylesheet"
+        href="{{ url_for('static', filename='css/create_post.css') }}"
+    />
+{% endblock %}
+
+{% block body %}
+    <div class="create-post-page">
+        <h1>Compose new post</h1>
+        <form 
+            class="compose-post"
+            action="{{ url_for('routes.login') }}"
+            method="POST"
+        >
+            {{ form.hidden_tag() }}
+            {{ form.title(placeholder="Title") }}
+            {% for error in form.title.errors %}
+                <div>{{ error }}</div>
+            {% endfor %}
+            {{ form.text(placeholder="Write your post here") }}
+            {% for error in form.text.errors %}
+                <div>{{ error }}</div>
+            {% endfor %}
+            {{ form.submit_button }}
+        </form>
+    </div>
+{% endblock %}

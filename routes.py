@@ -24,15 +24,16 @@ def testing():
     return render_template("testing.html", films=query.something())
 
 
-@routes.route("/post/all/page/", defaults={"page": 1}, methods=["GET"])
-@routes.route("/post/all/page/<int:page>", methods=["GET"])
+# @routes.route("/post/all/page/", defaults={"page": 1}, methods=["GET"])
+@routes.route("/post/all/page/<int:page>", defaults={"page": 1}, methods=["GET"])
 def posts(page):
     return render_template("posts.html", page=page)
 
 
 @routes.route("/post/new", methods=["GET", "POST"])
 def create_post():
-    pass
+    form = forms.ComposePostForm()
+    return render_template("create_post.html", form=form)
 
 
 @routes.route("/post/<int:id>", methods=["GET", "POST"])

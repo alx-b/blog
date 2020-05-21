@@ -14,7 +14,12 @@
     </head>
 
     <body>
+        <header>A BLOG</header>
         <nav class="nav-grid">
+            <a href="{{ url_for("routes.index") }}">Home</a>
+            <a href="{{ url_for("routes.about") }}">About</a>
+            <a href="{{ url_for("routes.posts") }}">Posts</a>
+            <a href="{{ url_for("routes.create_post") }}">Add Post</a>
         </nav>
         <div class="message-block">
             {% with messages = get_flashed_messages() %}
@@ -27,5 +32,6 @@
         </div>
         {% block body %}
         {% endblock %}
+        <footer>:)</footer>
     </body>
 </html>

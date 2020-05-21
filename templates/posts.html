@@ -1,0 +1,14 @@
+{% extends "base.html" %}
+
+{% block head %}
+    <link
+        rel="stylesheet"
+        href="{{ url_for('static', filename='css/posts.css') }}"
+    />
+{% endblock %}
+
+{% block body %}
+    <div class="posts-page">
+        <h1>All Posts</h1>
+    </div>
+{% endblock %}
