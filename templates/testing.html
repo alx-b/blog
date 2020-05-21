@@ -1,0 +1,20 @@
+{% extends "base.html" %}
+
+{% block head %}
+    <link
+        rel="stylesheet"
+        href="{{ url_for('static', filename='css/testing.css') }}"
+    />
+{% endblock %}
+
+{% block body %}
+    <div class="testing-page">
+        {% for film in films %}
+            <div class="movie-info">
+                <div>Title: {{ film.title }}</div>
+                <div>Year: {{ film.year }}</div>
+                <div>Rating: {{ film.rating }} / 10</div>
+            </div>
+        {% endfor %}
+    </div>
+{% endblock %}

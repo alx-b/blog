@@ -1,0 +1,8 @@
+.testing-page {
+    display: grid;
+    gap: 8px;
+}
+.movie-info {
+    background-color: #222;
+    color: #eee;
+}
