@@ -9,6 +9,9 @@
 
 {% block body %}
     <div class="testing-page">
+        {% include 'diagram.html' %}
+    </div>
+        {#
         {% for film in films %}
             <div class="movie-info">
                 <div>Title: {{ film.title }}</div>
@@ -16,5 +19,6 @@
                 <div>Rating: {{ film.rating }} / 10</div>
             </div>
         {% endfor %}
+        #}
     </div>
 {% endblock %}

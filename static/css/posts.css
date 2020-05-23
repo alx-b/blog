@@ -1,5 +1,15 @@
 .posts-page {
     display: grid;
-    gap: 8px;
-    background-color: #444;
+    gap: 32px;
+    padding: 16px;
+    background-color: #1d2d44;
 }
+
+.post {
+    display: grid;
+    gap: 16px;
+    background-color: #3e5c76;
+    padding: 16px;
+    color: #eee;
+}
+

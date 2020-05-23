@@ -3,17 +3,38 @@ body {
     margin: auto;
     width: 80vw;
     max-width: 80vw;
-    background-color: #333;
+    background-color: #1d2d44;
+    color: #eee;
+}
+
+.head-nav {
+    display: grid;
+    grid-template-columns: 20% 80%;
+}
+
+
+.main-header {
+    background-color: #1d2d44;
+    font-size: 24px;
     color: #eee;
 }
 
 .nav-grid {
     display: grid;
+    background-color: #1d2d44;
     grid-template-columns: repeat(4, auto);
+    gap: 40px;
+    margin-top: auto;
+    margin-left: auto;
+    margin-bottom: auto;
 }
 
 .nav-grid > a {
+    text-decoration: None;
+    font-size: 24px;
     color: #eee;
-    background-color: #222;
+}
 
+.nav-grid > a:hover {
+    color: #748cab;
 }

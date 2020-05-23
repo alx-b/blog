@@ -10,5 +10,15 @@
 {% block body %}
     <div class="posts-page">
         <h1>All Posts</h1>
+        {% for post in posts %}
+            <article class="post">
+                <header>
+                    <a href="{{ url_for("routes.read_post", id=post.id) }}"
+                    >{{ post.title }}</a> - {{ post.date_posted }}
+                </header>
+                <div>{{ post.text }}</div>
+                <footer>by {{ post.user_id.username }}</footer>
+            </article>
+        {% endfor %}
     </div>
 {% endblock %}

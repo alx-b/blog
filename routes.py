@@ -2,6 +2,7 @@ from flask import render_template, request, redirect, url_for, Blueprint, flash
 import functools
 import query
 import forms
+import datetime
 
 routes = Blueprint(
     "routes", __name__, static_folder="static", template_folder="templates"
@@ -21,13 +22,16 @@ def about():
 
 @routes.route("/testing", methods=["GET"])
 def testing():
-    return render_template("testing.html", films=query.something())
+    query.main()
+    return render_template("testing.html")
 
 
 # @routes.route("/post/all/page/", defaults={"page": 1}, methods=["GET"])
 @routes.route("/post/all/page/<int:page>", defaults={"page": 1}, methods=["GET"])
 def posts(page):
-    return render_template("posts.html", page=page)
+    return render_template(
+        "posts.html", page=page, posts=query.get_posts_in_descending_order()
+    )
 
 
 @routes.route("/post/new", methods=["GET", "POST"])
@@ -38,7 +42,7 @@ def create_post():
 
 @routes.route("/post/<int:id>", methods=["GET", "POST"])
 def read_post(id):
-    pass
+    return render_template("post.html", id=id, post=query.get_post_by_id(id))
 
 
 @routes.route("/post/<int:id>/update", methods=["GET", "POST"])
