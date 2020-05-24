@@ -1,0 +1,5 @@
+.login-page {
+    display: grid;
+    gap: 8px;
+    background-color: #1d2d44;
+}

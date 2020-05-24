@@ -22,7 +22,7 @@ body {
 .nav-grid {
     display: grid;
     background-color: #1d2d44;
-    grid-template-columns: repeat(4, auto);
+    grid-template-columns: repeat(7, auto);
     gap: 40px;
     margin-top: auto;
     margin-left: auto;

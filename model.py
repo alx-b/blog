@@ -23,7 +23,7 @@ class User(Model):
 
 
 class Post(Model):
-    title = TextField()
+    title = TextField(null=False)
     text = TextField(null=True)
     user_id = ForeignKeyField(User, backref="posts", null=True)
     date_posted = TextField(null=False)

@@ -12,7 +12,7 @@
         <h1>Compose new post</h1>
         <form 
             class="compose-post"
-            action="{{ url_for('routes.login') }}"
+            action="{{ url_for('routes.create_post') }}"
             method="POST"
         >
             {{ form.hidden_tag() }}
