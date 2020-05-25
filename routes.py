@@ -1,11 +1,25 @@
-from flask import render_template, request, redirect, url_for, Blueprint, flash
 import functools
+
+from flask import render_template, request, redirect, url_for, Blueprint, flash
+
 import query
 import forms
+import auth
 
 routes = Blueprint(
     "routes", __name__, static_folder="static", template_folder="templates"
 )
+
+
+def login_required(func):
+    @functools.wraps(func)
+    def decorated_function(*args, **kwargs):
+        if not auth.user_is_logged_in():
+            return redirect(url_for("routes.login"))
+            # return redirect(url_for('auth.login', next=request.url))
+        return func(*args, **kwargs)
+
+    return decorated_function
 
 
 @routes.route("/", defaults={"page": 1}, methods=["GET", "POST"])
@@ -30,63 +44,91 @@ def testing():
     "/post/all/page/<int:page>", defaults={"page": 1}, methods=["GET", "POST"]
 )
 def posts(page):
-    posts = query.get_posts_in_descending_order()
-    if posts:
+    try:
+        posts = query.get_posts_in_descending_order()
         return render_template("posts.html", page=page, posts=posts)
-    return render_template("posts.html", page=page)
+    except:
+        return render_template("posts.html", page=page)
 
 
 @routes.route("/post/new", methods=["GET", "POST"])
+@login_required
 def create_post():
     form = forms.ComposePostForm()
     if form.validate_on_submit():
-        query.save_post(form.title.data, form.text.data, query.get_current_user().id)
-        return redirect(url_for("routes.posts"))
+        try:
+            query.save_post(form.title.data, form.text.data, auth.get_current_user().id)
+            return redirect(url_for("routes.posts"))
+        except:
+            flash("Something went wrong!")
     return render_template("create_post.html", form=form)
 
 
 @routes.route("/post/<int:id>", methods=["GET", "POST"])
 def read_post(id):
-    post = query.get_post_by_id(id)
-    if post:
+    try:
+        post = query.get_post_by_id(id)
         return render_template("post.html", id=id, post=post)
-    return render_template("post.html", id=id)
+    except:
+        return render_template("post.html", id=id)
 
 
 @routes.route("/post/<int:id>/update", methods=["GET", "POST"])
+@login_required
 def update_post(id):
-    pass
+    form = forms.ComposePostForm()
+    post = query.get_post_by_id(id)
+    if form.validate_on_submit():
+        try:
+            query.update_post(id, form.title.data, form.text.data)
+            return redirect(url_for("routes.posts"))
+        except:
+            flash("Something went wrong!")
+    form.title.data = post.title
+    form.text.data = post.text
+    return render_template("update_post.html", id=id, form=form)
 
 
 @routes.route("/post/<int:id>/delete", methods=["GET", "POST"])
+@login_required
 def delete_post(id):
     pass
 
 
 @routes.route("/signup", methods=["GET", "POST"])
 def signup():
+    if auth.user_is_logged_in():
+        flash("You are already logged in!")
+        return redirect(url_for("routes.index"))
     form = forms.RegisterForm()
     if form.validate_on_submit():
-        query.confirm_signup(
-            form.username.data, form.password.data, form.confirm_password.data
-        )
+        try:
+            auth.confirm_signup(
+                form.username.data, form.password.data, form.confirm_password.data
+            )
+            return redirect(url_for("routes.posts"))
+        except:
+            flash("Something went wrong!")
     return render_template("signup.html", form=form)
 
 
 @routes.route("/login", methods=["GET", "POST"])
 def login():
+    if auth.user_is_logged_in():
+        flash("You are already logged in!")
+        return redirect(url_for("routes.index"))
     form = forms.LoginForm()
     if form.validate_on_submit():
         try:
-            query.confirm_login(form.username.data, form.password.data)
+            auth.confirm_login(form.username.data, form.password.data)
             return redirect(url_for("routes.posts"))
         except:
             flash("Something went wrong")
-
     return render_template("login.html", form=form)
 
 
 @routes.route("/logout", methods=["GET", "POST"])
+@login_required
 def logout():
-    query.clear_session()
+    auth.clear_session()
     return redirect(url_for("routes.login"))

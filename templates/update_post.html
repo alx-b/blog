@@ -12,7 +12,7 @@
         <h1>Compose new post</h1>
         <form 
             class="compose-post"
-            action="{{ url_for('routes.create_post') }}"
+            action="{{ url_for('routes.update_post', id=id) }}"
             method="POST"
         >
             {{ form.csrf_token }}

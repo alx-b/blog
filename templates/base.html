@@ -20,10 +20,16 @@
                 <a href="{{ url_for("routes.index") }}">Home</a>
                 <a href="{{ url_for("routes.about") }}">About</a>
                 <a href="{{ url_for("routes.posts") }}">Posts</a>
+                {% if session["user_id"] %}
                 <a href="{{ url_for("routes.create_post") }}">Add Post</a>
+                {% endif %}
+                {% if not session["user_id"] %}
                 <a href="{{ url_for("routes.login") }}">Login</a>
                 <a href="{{ url_for("routes.signup") }}">Signup</a>
+                {% endif %}
+                {% if session["user_id"] %}
                 <a href="{{ url_for("routes.logout") }}">Logout</a>
+                {% endif %}
             </nav>
         </div>
         <div class="message-block">
