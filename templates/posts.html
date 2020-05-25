@@ -18,6 +18,14 @@
                 </header>
                 <div>{{ post.text }}</div>
                 <footer>by {{ post.user_id.username }}</footer>
+                <div class="button-grid">
+                    <div><a class="link-buttons"
+                            href="{{ url_for("routes.update_post", id=post.id) }}"
+                         >Edit</a></div>
+                    <div><a class="link-buttons"
+                            href="{{ url_for("routes.delete_post", id=post.id) }}"
+                         >Delete</a></div>
+                </div>
             </article>
         {% endfor %}
     </div>

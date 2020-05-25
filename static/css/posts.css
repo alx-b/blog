@@ -13,3 +13,9 @@
     color: #eee;
 }
 
+.button-grid {
+    display: grid;
+    grid-template-columns: auto auto;
+    width: 10%;
+    margin-left: auto;
+}

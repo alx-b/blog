@@ -38,3 +38,10 @@ body {
 .nav-grid > a:hover {
     color: #748cab;
 }
+
+.link-buttons {
+    text-decoration: None;
+    background-color: #748cab;
+    color: #fff;
+    padding: 8px;
+}
