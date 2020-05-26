@@ -78,21 +78,31 @@ def read_post(id):
 def update_post(id):
     form = forms.ComposePostForm()
     post = query.get_post_by_id(id)
-    if form.validate_on_submit():
-        try:
-            query.update_post(id, form.title.data, form.text.data)
-            return redirect(url_for("routes.posts"))
-        except:
-            flash("Something went wrong!")
-    form.title.data = post.title
-    form.text.data = post.text
-    return render_template("update_post.html", id=id, form=form)
+    if post.user_id.id == auth.get_current_user().id:
+        if form.validate_on_submit():
+            try:
+                query.update_post(id, form.title.data, form.text.data)
+                return redirect(url_for("routes.posts"))
+            except:
+                flash("Something went wrong!")
+        form.title.data = post.title
+        form.text.data = post.text
+        return render_template("update_post.html", id=id, form=form)
+    else:
+        flash("UNAUTHORIZED")
+        return redirect(url_for("routes.posts"))
 
 
-@routes.route("/post/<int:id>/delete", methods=["GET", "POST"])
+@routes.route("/post/<int:id>/delete", methods=["GET"])
 @login_required
 def delete_post(id):
-    pass
+    post = query.get_post_by_id(id)
+    if post.user_id.id == auth.get_current_user().id:
+        query.delete_post(id)
+        return redirect(url_for("routes.posts"))
+    else:
+        flash("UNAUTHORIZED")
+        return redirect(url_for("routes.posts"))
 
 
 @routes.route("/signup", methods=["GET", "POST"])
@@ -103,10 +113,10 @@ def signup():
     form = forms.RegisterForm()
     if form.validate_on_submit():
         try:
-            auth.confirm_signup(
+            if auth.confirm_signup(
                 form.username.data, form.password.data, form.confirm_password.data
-            )
-            return redirect(url_for("routes.posts"))
+            ):
+                return redirect(url_for("routes.posts"))
         except:
             flash("Something went wrong!")
     return render_template("signup.html", form=form)
@@ -120,14 +130,14 @@ def login():
     form = forms.LoginForm()
     if form.validate_on_submit():
         try:
-            auth.confirm_login(form.username.data, form.password.data)
-            return redirect(url_for("routes.posts"))
+            if auth.confirm_login(form.username.data, form.password.data):
+                return redirect(url_for("routes.posts"))
         except:
             flash("Something went wrong")
     return render_template("login.html", form=form)
 
 
-@routes.route("/logout", methods=["GET", "POST"])
+@routes.route("/logout", methods=["GET"])
 @login_required
 def logout():
     auth.clear_session()

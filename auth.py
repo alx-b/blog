@@ -2,6 +2,7 @@ from flask import Blueprint, flash, session
 import argon2
 
 from model import User
+import query
 
 
 def user_is_logged_in():
@@ -34,22 +35,27 @@ def confirm_login(form_username, form_password):
         authorize_user(user)
         if argon2.PasswordHasher().check_needs_rehash(user.password):
             print("password needs a rehash!")
-            # Might need to auto-rehash and update database?
+        return True
+        # Might need to auto-rehash and update database?
     except:
         flash("Wrong authentifications!")
+        return False
 
 
 def confirm_signup(username, password, confirm):
     if username_is_unique(username):
         try:
             hashed_password = get_hashed_password(password)
-            user = add_and_return_a_user(username, hashed_password)
+            user = query.add_and_return_a_user(username, hashed_password)
             authorize_user(user)
             flash("Account created!")
+            return True
         except:
             flash("Something went wrong!")
+            return False
     else:
         flash("Username already exists.")
+        return False
 
 
 def get_hashed_password(password):

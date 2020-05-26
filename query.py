@@ -33,6 +33,14 @@ def update_post(post_id, title, text):
         flash("Couldn't update the post!")
 
 
+def delete_post(post_id):
+    try:
+        Post.delete().where(Post.id == post_id).execute()
+        flash("Post deleted!")
+    except:
+        flash("Couldn't delete the post!")
+
+
 def get_posts_in_descending_order():
     try:
         posts = Post.select(Post, User).join(User).order_by(Post.date_posted.desc())
