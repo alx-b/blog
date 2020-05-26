@@ -14,7 +14,7 @@
             <article class="post">
                 <header>
                     <a href="{{ url_for("routes.read_post", id=post.id) }}"
-                    >{{ post.title }}</a> - {{ post.date_posted }}
+                    >{{ post.title }}</a> - published on {{ post.date_posted }}
                 </header>
                 <div>{{ post.text }}</div>
                 <footer>by {{ post.user_id.username }}</footer>

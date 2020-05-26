@@ -3,3 +3,26 @@
     gap: 8px;
     background-color: #1d2d44;
 }
+
+.signup-page > form {
+    display: grid;
+    gap: 16px;
+    background-color: #1d2d44;
+    width: 30%;
+    margin-left: auto;
+    margin-right: auto;
+    padding: 20px;
+}
+
+.signup-page .input {
+    font-size: 16px;
+    border-left: 1px solid #fff;
+    border-bottom: 1px solid #fff;
+    color: #fff;
+    padding: 8px;
+}
+
+.signup-page .buttons {
+    width: 130px;
+    margin-left: auto;
+}

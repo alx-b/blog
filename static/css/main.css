@@ -5,11 +5,13 @@ body {
     max-width: 80vw;
     background-color: #1d2d44;
     color: #eee;
+    gap: 10px;
 }
 
-.head-nav {
+.main-header-nav {
     display: grid;
     grid-template-columns: 20% 80%;
+    border-bottom: 1px solid #fff;
 }
 
 
@@ -19,29 +21,59 @@ body {
     color: #eee;
 }
 
-.nav-grid {
+.main-nav {
     display: grid;
     background-color: #1d2d44;
-    grid-template-columns: repeat(7, auto);
-    gap: 40px;
+    grid-template-columns: repeat(5, auto);
+    gap: 30px;
     margin-top: auto;
     margin-left: auto;
     margin-bottom: auto;
 }
 
-.nav-grid > a {
+.main-nav > a {
     text-decoration: None;
     font-size: 24px;
     color: #eee;
 }
 
-.nav-grid > a:hover {
+.main-nav > a:hover {
     color: #748cab;
+}
+
+.main-footer {
+    border-top: 1px solid #fff;
+    padding-top: 10px;
 }
 
 .link-buttons {
     text-decoration: None;
-    background-color: #748cab;
+    border: 1px solid #fff;
+    /*background-color: #1d2d44;*/
+    /*background-color: #3e5c76;*/
+    background-color: #324257;
     color: #fff;
     padding: 8px;
+}
+
+.link-buttons:hover {
+    background-color: #748cab;
+}
+
+.buttons {
+    text-decoration: None;
+    border: 1px solid #fff;
+    background-color: #1d2d44;
+    color: #fff;
+    padding: 8px;
+    cursor: pointer;
+}
+
+.buttons:hover{
+    background-color: #748cab;
+}
+
+.input{
+    background-color: #1d2d44;
+    border: 0;
 }

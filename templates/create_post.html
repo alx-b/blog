@@ -16,15 +16,15 @@
             method="POST"
         >
             {{ form.csrf_token }}
-            {{ form.title(placeholder="Title") }}
+            {{ form.title(class_="input", placeholder="Title") }}
             {% for error in form.title.errors %}
                 <div>{{ error }}</div>
             {% endfor %}
-            {{ form.text(placeholder="Write your post here") }}
+            {{ form.text(class_="input", placeholder="Write your post here") }}
             {% for error in form.text.errors %}
                 <div>{{ error }}</div>
             {% endfor %}
-            {{ form.submit_button }}
+            {{ form.submit_button(class_="buttons") }}
         </form>
     </div>
 {% endblock %}

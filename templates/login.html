@@ -12,12 +12,12 @@
         <form action="{{ url_for("routes.login") }}" method="POST">
             {{ form.csrf_token }}
 
-            {{ form.username(class="input", placeholder="username") }}
+            {{ form.username(class_="input", placeholder="username") }}
             {% for error in form.username.errors %}
                 <div>{{ error }}</div>
             {% endfor %}
 
-            {{ form.password(class="input", placeholder="password") }}
+            {{ form.password(class_="input", placeholder="password") }}
             {% for error in form.password.errors %}
                 <div>{{ error }}</div>
             {% endfor %}
