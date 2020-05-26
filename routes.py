@@ -1,6 +1,6 @@
 import functools
 
-from flask import render_template, request, redirect, url_for, Blueprint, flash
+from flask import render_template, request, redirect, url_for, Blueprint, flash, abort
 
 import query
 import forms
@@ -70,7 +70,7 @@ def read_post(id):
         post = query.get_post_by_id(id)
         return render_template("post.html", id=id, post=post)
     except:
-        return render_template("post.html", id=id)
+        abort(404)
 
 
 @routes.route("/post/<int:id>/update", methods=["GET", "POST"])
@@ -89,8 +89,7 @@ def update_post(id):
         form.text.data = post.text
         return render_template("update_post.html", id=id, form=form)
     else:
-        flash("UNAUTHORIZED")
-        return redirect(url_for("routes.posts"))
+        abort(403)
 
 
 @routes.route("/post/<int:id>/delete", methods=["GET"])
@@ -98,11 +97,14 @@ def update_post(id):
 def delete_post(id):
     post = query.get_post_by_id(id)
     if post.user_id.id == auth.get_current_user().id:
-        query.delete_post(id)
-        return redirect(url_for("routes.posts"))
+        try:
+            query.delete_post(id)
+            return redirect(url_for("routes.posts"))
+        except:
+            flash("Something went wrong!")
+            abort(500)
     else:
-        flash("UNAUTHORIZED")
-        return redirect(url_for("routes.posts"))
+        abort(403)
 
 
 @routes.route("/signup", methods=["GET", "POST"])
