@@ -15,6 +15,12 @@
     width: auto;
 }
 
+.posts-page .post .text-layout {
+    overflow: hidden;
+    max-height: 40px;
+    white-space: pre;
+}
+
 .posts-page .button-grid {
     display: grid;
     grid-template-columns: auto auto;

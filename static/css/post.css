@@ -14,6 +14,10 @@
     border-left: 4px solid #fff;
 }
 
+.post-page .post .text-layout {
+    white-space: pre;
+}
+
 .post-page .button-grid {
     display: grid;
     grid-template-columns: auto auto;

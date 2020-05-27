@@ -14,7 +14,7 @@
             <header>
                 {{ post.title }} - published on {{ post.date_posted }}
             </header>
-            <div>{{ post.text }}</div>
+            <div><p class="text-layout">{{ post.text }}</p></div>
             <footer>by {{ post.user_id.username }}</footer>
             {% if session.get("user_id") and session.get("user_id") ==
             post.user_id.id %}

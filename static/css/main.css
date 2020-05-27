@@ -54,6 +54,7 @@ body {
     background-color: #324257;
     color: #fff;
     padding: 8px;
+    transition-duration: 0.3s;
 }
 
 .link-buttons:hover {
@@ -67,6 +68,7 @@ body {
     color: #fff;
     padding: 8px;
     cursor: pointer;
+    transition-duration: 0.3s;
 }
 
 .buttons:hover{
