@@ -6,7 +6,6 @@ from model import User, Post
 
 
 def save_post(title, text, user_id):
-    print(datetime.datetime.now().strftime("%d/%m/%Y - %X"))
     post = Post(
         title=title,
         text=text,
@@ -17,19 +16,10 @@ def save_post(title, text, user_id):
 
 
 def update_post(post_id, title, text):
-    update = False
-    post = Post.select().where(Post.id == post_id).get()
-    if post.title != title:
-        post.title = title
-        update = True
-    if post.text != text:
-        post.text = text
-        update = True
-
-    if update is True:
-        post.save()
+    try:
+        Post.update(title=title, text=text).where(Post.id == post_id).execute()
         flash("Post updated!")
-    else:
+    except:
         flash("Couldn't update the post!")
 
 

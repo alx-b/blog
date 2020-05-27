@@ -81,6 +81,7 @@ def update_post(id):
     if post.user_id.id == auth.get_current_user().id:
         if form.validate_on_submit():
             try:
+                # query.update_post(id, form.title.data, form.text.data)
                 query.update_post(id, form.title.data, form.text.data)
                 return redirect(url_for("routes.posts"))
             except:
