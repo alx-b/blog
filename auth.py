@@ -1,4 +1,4 @@
-from flask import Blueprint, flash, session
+from flask import flash, session
 import argon2
 
 from model import User

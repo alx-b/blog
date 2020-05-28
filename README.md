@@ -1,5 +1,16 @@
 # Blog
-A small blog to test some libraries.
+A small blog to test some libraries as a school project.
 
-## Build with
-Python (Flask, Flask-WTF, peewee), HTML, CSS
+## Built with
+Python (Flask, Flask-WTF/WTForms, peewee, argon2-cffi), HTML, CSS.
+
+## Screenshots
+Soon...
+
+## Features
+- Account creation.
+- Read posts.
+- Write, update, or delete your own posts.
+
+## Status
+In progress.

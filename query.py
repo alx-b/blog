@@ -32,15 +32,13 @@ def delete_post(post_id):
 
 
 def get_posts_in_descending_order():
-    try:
-        posts = Post.select(Post, User).join(User).order_by(Post.date_posted.desc())
-        return posts if posts else flash("No post yet!")
-    except:
-        flash("Couldn't get posts, something went wrong")
-        return None
+    """Return a list instance of all posts in descending order by date."""
+    posts = Post.select(Post, User).join(User).order_by(Post.date_posted.desc())
+    return posts if posts else flash("No post yet!")
 
 
 def get_post_by_id(post_id):
+    """Get data from database and return it as Post instance."""
     try:
         post = Post.select(Post, User).join(User).where(Post.id == post_id).get()
         return post if post else flash("No post yet!")
@@ -50,6 +48,7 @@ def get_post_by_id(post_id):
 
 
 def add_and_return_a_user(username, password):
+    """Add data to database and return it as User instance."""
     try:
         user = User.create(username=username, password=password)
         return user
