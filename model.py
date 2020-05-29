@@ -27,7 +27,7 @@ class Post(Model):
     text = TextField(null=True)
     user_id = ForeignKeyField(User, backref="posts", null=True)
     date_posted = TextField(null=False)
-    # last_date_updated = TextField(null=True)
+    last_updated = TextField(null=True)
 
     class Meta:
         database = db
