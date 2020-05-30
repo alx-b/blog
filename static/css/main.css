@@ -79,3 +79,44 @@ body {
     background-color: #1d2d44;
     border: 0;
 }
+
+@media only screen and (max-width: 600px) {
+    body {
+        display: flex;
+        flex-direction: column;
+        color: #eee;
+        width: 94vw;
+        max-width: 94vw;
+    }
+
+    .main-header-nav {
+        display: flex;
+        flex-direction: column;
+        border: 0;
+    }
+
+
+    .main-header {
+        background-color: #1d2d44;
+        font-size: 24px;
+        color: #eee;
+        text-align: center;
+    }
+
+    .main-nav {
+        display: flex;
+        flex-direction: column;
+        background-color: #1d2d44;
+        width: 100%;
+        text-align: center;
+        gap: 0;
+    }
+
+    .main-nav > a {
+        text-decoration: None;
+        font-size: 24px;
+        color: #eee;
+        margin: 4px;
+        border: 1px solid #fff;
+    }
+}
