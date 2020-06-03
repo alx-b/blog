@@ -39,16 +39,18 @@ def testing():
     return render_template("testing.html")
 
 
-# @routes.route("/post/all/page/", defaults={"page": 1}, methods=["GET"])
-@routes.route(
-    "/post/all/page/<int:page>", defaults={"page": 1}, methods=["GET", "POST"]
-)
+@routes.route("/post/all/page/", defaults={"page": 1}, methods=["GET"])
+@routes.route("/post/all/page/<int:page>", methods=["GET"])
 def posts(page):
     try:
-        posts = query.get_posts_in_descending_order()
-        return render_template("posts.html", page=page, posts=posts)
+        posts_per_page = 6
+        posts = query.get_posts_in_descending_order(page, posts_per_page)
+        total_pages = query.get_total_pages(posts_per_page)
+        return render_template(
+            "posts.html", page=page, posts=posts, total_pages=total_pages
+        )
     except:
-        return render_template("posts.html", page=page)
+        abort(404)
 
 
 @routes.route("/post/new", methods=["GET", "POST"])

@@ -34,5 +34,19 @@
                 {% endif %}
             </article>
         {% endfor %}
+            <div>
+                {% if page > 1 %}
+                    <a
+                        class="buttons"
+                        href="{{ url_for("routes.posts", page=page-1) }}"
+                    >PREVIOUS</a>
+                {% endif %}
+                {% if page < total_pages %}
+                    <a
+                        class="buttons"
+                        href="{{ url_for("routes.posts", page=page+1) }}"
+                    >NEXT</a>
+                {% endif %}
+            </div>
     </div>
 {% endblock %}
