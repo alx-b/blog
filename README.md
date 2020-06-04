@@ -5,7 +5,8 @@ A small blog to test some libraries as a school project.
 Python (Flask, Flask-WTF/WTForms, peewee, argon2-cffi), HTML, CSS.
 
 ## Screenshots
-Soon...
+![](screenshots/signup_page.png)
+![](screenshots/signup_page_mobile.png)
 
 ## Features
 - Account creation.
