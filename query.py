@@ -1,18 +1,21 @@
 import datetime
+import math
 
 from flask import flash
 
 from model import User, Post
 
 
-def stringify_date(dt_object):
-    return dt_object.strftime("%d/%m/%Y - %X")
+def stringify_date(date_string):
+    """Change date string into a new date string format."""
+    date_object = datetime.datetime.strptime(date_string, "%m/%d/%Y %I:%M:%S")
+    return date_object.strftime("%d/%m/%Y - %X")
 
 
 def get_total_pages(posts_per_page):
     posts = Post.select().order_by(Post.date_posted.desc())
-    total_pages = int((len(posts) / posts_per_page) + (len(posts) % posts_per_page))
-    return total_pages if total_pages > 0 else 1
+    total_pages = math.ceil(len(posts) / posts_per_page)
+    return total_pages
 
 
 # POST
