@@ -41,6 +41,11 @@ body {
     color: #748cab;
 }
 
+.main-message-block {
+    text-align: center;
+}
+
+
 .main-footer {
     border-top: 1px solid #fff;
     padding-top: 10px;

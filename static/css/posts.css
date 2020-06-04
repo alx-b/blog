@@ -5,6 +5,10 @@
     background-color: #1d2d44;
 }
 
+.posts-page h2 {
+    text-align: center;
+}
+
 .posts-page .post {
     display: grid;
     gap: 16px;

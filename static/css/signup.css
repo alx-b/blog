@@ -4,6 +4,10 @@
     background-color: #1d2d44;
 }
 
+.signup-page h2 {
+    text-align: center;
+}
+
 .signup-page > form {
     display: grid;
     gap: 16px;
@@ -25,4 +29,12 @@
 .signup-page .buttons {
     width: 130px;
     margin-left: auto;
+}
+
+@media only screen and (max-width: 600px) {
+    .signup-page > form {
+        width: 400px;
+        margin-left: auto;
+        margin-right: auto;
+    }
 }
