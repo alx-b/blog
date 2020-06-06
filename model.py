@@ -1,3 +1,4 @@
+import datetime
 from peewee import SqliteDatabase, Model, TextField, ForeignKeyField
 
 db = SqliteDatabase(
@@ -28,6 +29,20 @@ class Post(Model):
     user_id = ForeignKeyField(User, backref="posts", null=True)
     date_posted = TextField(null=False)
     last_updated = TextField(null=True)
+
+    def stringify_date_posted(self):
+        """Change date string into a new date string format."""
+        date_object = datetime.datetime.strptime(
+            self.date_posted, "%Y-%m-%d %H:%M:%S.%f"
+        )
+        return date_object.strftime("%d/%m/%Y - %X")
+
+    def stringify_last_updated(self):
+        """Change date string into a new date string format."""
+        date_object = datetime.datetime.strptime(
+            self.last_updated, "%Y-%m-%d %H:%M:%S.%f"
+        )
+        return date_object.strftime("%d/%m/%Y - %X")
 
     class Meta:
         database = db

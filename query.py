@@ -6,10 +6,10 @@ from flask import flash
 from model import User, Post
 
 
-def stringify_date(date_string):
-    """Change date string into a new date string format."""
-    date_object = datetime.datetime.strptime(date_string, "%m/%d/%Y %I:%M:%S")
-    return date_object.strftime("%d/%m/%Y - %X")
+# def stringify_date(date_string):
+#    """Change date string into a new date string format."""
+#    date_object = datetime.datetime.strptime(date_string, "%Y-%m-%d %H:%M:%S.%f")
+#    return date_object.strftime("%d/%m/%Y - %X")
 
 
 def get_total_pages(posts_per_page):
