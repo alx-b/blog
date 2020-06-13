@@ -30,7 +30,20 @@ def index(page):
 
 @routes.route("/about", methods=["GET"])
 def about():
-    return render_template("about.html")
+    text = "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla sed\
+            metus lorem. Praesent vitae tempor sem. Nullam vehicula tristique\
+            nunc, maximus volutpat felis placerat a. Sed rhoncus velit et eros\
+            porttitor euismod. Nullam nibh sapien, ultrices sit amet nisi eu,\
+            molestie luctus quam. In dapibus dapibus risus, ac porttitor mauris\
+            imperdiet mattis. Morbi gravida lectus id augue volutpat, atgravida\
+            eros pellentesque. Integer bibendum luctus libero, eget eleifend\
+            metus maximus vitae. Duis ante lectus, condimentum at lorem sed,\
+            pretium ornare erat. Mauris aliquam lobortis tellus id volutpat.\
+            Interdum et malesuada fames ac ante ipsum primis in faucibus. Nulla\
+            facilisi. Ut luctus et ipsum vitae fringilla. Aliquam et ipsum non\
+            libero auctor placerat fringilla ut tortor. Pellentesque placerat\
+            nulla velit, ac commodo magna scelerisque nec."
+    return render_template("about.html", text=text)
 
 
 @routes.route("/testing", methods=["GET"])

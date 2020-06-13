@@ -7,3 +7,29 @@
 .about-page h2{
     text-align: center;
 }
+
+.about-page .layout {
+    display: grid;
+    grid-template-columns: 2fr 1fr;
+    gap: 32px;
+}
+
+.about-page .col {
+    padding: 16px;
+    text-align: justify;
+}
+
+@media only screen and (max-width: 600px) {
+    .about-page .layout {
+        display: flex;
+        flex-direction: column-reverse;
+        grid-template-columns: auto;
+        gap: 32px;
+    }
+
+    .about-page .col {
+        margin: auto;
+        padding: 16px;
+        text-align: justify;
+    }
+}
