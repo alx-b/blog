@@ -22,7 +22,7 @@
 .posts-page .post .text-layout {
     overflow: hidden;
     max-height: 40px;
-    white-space: pre;
+    white-space: pre-wrap;
 }
 
 .posts-page .button-grid {

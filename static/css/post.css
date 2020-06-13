@@ -15,7 +15,7 @@
 }
 
 .post-page .post .text-layout {
-    white-space: pre;
+    white-space: pre-wrap;
 }
 
 .post-page .button-grid {

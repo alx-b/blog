@@ -20,7 +20,7 @@
                         last updated on {{ post.stringify_last_updated() }}
                     {% endif %}
                 </header>
-                <div><p class="text-layout">{{ post.text }}</p></div>
+                <div class="text-layout">{{ post.text }}</div>
                 <footer>by {{ post.user_id.username }}</footer>
                 {% if session.get("user_id") and session.get("user_id") ==
                 post.user_id.id %}
