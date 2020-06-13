@@ -6,7 +6,9 @@ Python (Flask, Flask-WTF/WTForms, peewee, argon2-cffi), HTML, CSS.
 
 ## Screenshots
 ![](screenshots/signup_page.png)
+![](screenshots/posts.png)
 ![](screenshots/signup_page_mobile.png)
+![](screenshots/posts_mobile.png)
 
 ## Features
 - Account creation.
