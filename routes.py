@@ -1,6 +1,6 @@
 import functools
 
-from flask import render_template, request, redirect, url_for, Blueprint, flash, abort
+from flask import render_template, redirect, url_for, Blueprint, flash, abort
 
 import query
 import forms
